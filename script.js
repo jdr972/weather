@@ -1,3 +1,6 @@
+$(document).ready(function(){
+
+
 function getPos(){
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(pos){
@@ -59,3 +62,4 @@ $("#btn").click(function(){
     $("#btn").html('°F');
   }
 });
+})
