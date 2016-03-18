@@ -1,5 +1,3 @@
-$(document).ready(function(){
-
 
 function getPos(){
   if(navigator.geolocation){
@@ -69,4 +67,4 @@ $("#btn").click(function(){
     $("#btn").html('°F');
 
   }
-});
+})
