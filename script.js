@@ -15,16 +15,17 @@ function getPos(){
         descript[0] = descript[0].toUpperCase();
         description = descript.join("")
    $("#weather").html("<img src="+icon+">" +description);
+        $("#pos").html(obj.name+", "+obj.sys.country)
         //Background color change to be added
       })
 
-      //reverse geolocating because openweather's API wouldn't return the right city sometimes
+      /* reverse geolocating because openweather's API wouldn't return the right city sometimes
       reverseGeo = "http://api.opencagedata.com/geocode/v1/json?q="+ latitude +"+"+ longitude +"&key=213996c4ca9ae0d53e35a07bc57e0ea5"
       $.getJSON(reverseGeo,function(rev){
         $("#pos").html(rev.results[0].components.city+", "+rev.results[0].components.country );
 
       })
-
+        */
     })
   }
   else {
@@ -35,18 +36,21 @@ function getPos(){
 
 getPos();
 $("#btn").click(function(){
-
   if($("#btn").html() == "°F"){
     var temperature = $("#temp").html();
     var arr_ = temperature.split("");
     arr_.pop();
     arr_.pop();
-    var temp_ = arr_[0] + arr_[1] ;
-    temp_ *= 1.8; temp_ += 32;
-    temp_ = Math.round(temp_);
-    console.log(temp_);
-    $("#temp").html(temp_ + "°F");
+    temperature = 0;
+    for(var i =0;i<arr_.length;i++){
+      temperature += arr_[i];
+      console.log(temperature);
+    }
+    temperature *= 1.8; temperature += 32;
+    console.log(temperature);
+    $("#temp").html(Math.round(temperature)+"°F");
     $("#btn").html('°C');
+
   }
   else if($("#btn").html() == "°C")
     {
@@ -54,12 +58,15 @@ $("#btn").click(function(){
     var arr_ = temperature.split("");
     arr_.pop();
     arr_.pop();
-    var temp_ = arr_[0] + arr_[1];
-    temp_ -= 32; temp_ /= 1.8;
-    temp_ = Math.round(temp_);
-    console.log(temp_);
-    $("#temp").html(temp_ + "°C");
+       temperature = 0;
+    for(var i =0;i<arr_.length;i++){
+      temperature += arr_[i];
+      console.log(temperature);
+    }
+    temperature -= 32; temperature /= 1.8;
+    console.log(temperature);
+    $("#temp").html(Math.round(temperature)+"°C");
     $("#btn").html('°F');
+
   }
 });
-})
