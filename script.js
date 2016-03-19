@@ -67,4 +67,4 @@ $("#btn").click(function(){
     $("#btn").html('°F');
 
   }
-})
+});
